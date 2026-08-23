@@ -5,14 +5,6 @@ from .database import Base
 
 
 class Meeting(Base):
-    """
-    One row per uploaded meeting recording. `status` tracks it through the
-    pipeline so the frontend can poll and show progress:
-
-        pending -> transcribing -> summarizing -> done
-                                              \\-> failed
-    """
-
     __tablename__ = "meetings"
 
     id = Column(Integer, primary_key=True, index=True)
