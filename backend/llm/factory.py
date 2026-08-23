@@ -7,9 +7,6 @@ from .local_summarizer import LocalSummarizer
 
 
 def get_summarizer() -> BaseSummarizer:
-
-    """Returns the configured LLM summarizer."""
-
     if settings.LLM_PROVIDER == "local":
         return LocalSummarizer()
 
