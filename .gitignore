@@ -1,0 +1,28 @@
+# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Database
+*.db
+*.sqlite3
+
+# Uploaded audio (runtime data - keep the folder, not its contents)
+storage/*
+!storage/.gitkeep
+
+# OS / editor cruft
+.DS_Store
+.vscode/
+.idea/
+*.swp

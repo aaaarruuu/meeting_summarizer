@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meeting Summarizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="brand-name">Meeting Summarizer</span>
+    </div>
+    <div class="topbar-meta">
+      <span class="pill" id="api-status">checking API…</span>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ================= SIDEBAR: meeting library ================= -->
+    <aside class="sidebar" aria-label="Meeting history">
+      <div class="sidebar-head">
+        <h2>Meetings</h2>
+        <span class="count" id="meeting-count">0</span>
+      </div>
+      <ul class="meeting-list" id="meeting-list" aria-live="polite">
+        <li class="empty-hint" id="empty-hint">No meetings yet — upload a recording to get started.</li>
+      </ul>
+    </aside>
+
+    <!-- ================= MAIN PANEL ================= -->
+    <main class="main">
+
+      <!-- Upload card -->
+      <section class="card upload-card" aria-labelledby="upload-heading">
+        <h2 id="upload-heading">Upload a recording</h2>
+        <p class="muted">Drop an audio file, or choose one from your device. Supported: mp3, wav, m4a, mp4, webm, ogg, flac, aac.</p>
+
+        <label class="dropzone" id="dropzone" for="file-input" tabindex="0">
+          <input type="file" id="file-input" accept=".mp3,.wav,.m4a,.mp4,.webm,.ogg,.flac,.aac" hidden />
+          <svg class="dropzone-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 16V4M12 4L7 9M12 4l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="dropzone-text"><strong>Choose a file</strong> or drag it here</span>
+        </label>
+
+        <div class="upload-row">
+          <button class="btn btn-primary" id="upload-btn" disabled>Upload &amp; process</button>
+          <span class="file-chip" id="file-chip" hidden></span>
+        </div>
+      </section>
+
+      <!-- Active meeting: pipeline + results -->
+      <section class="card detail-card" id="detail-card" hidden aria-labelledby="detail-heading">
+
+        <div class="detail-header">
+          <div>
+            <h2 id="detail-heading" class="detail-filename">—</h2>
+            <span class="detail-sub" id="detail-sub">—</span>
+          </div>
+          <button class="btn btn-ghost btn-danger" id="delete-btn">Delete</button>
+        </div>
+
+        <!-- Pipeline stepper + waveform signature -->
+        <div class="pipeline" id="pipeline" aria-live="polite">
+          <div class="waveform" id="waveform" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <ol class="steps" id="steps">
+            <li class="step" data-step="pending">Queued</li>
+            <li class="step" data-step="transcribing">Transcribing</li>
+            <li class="step" data-step="summarizing">Summarizing</li>
+            <li class="step" data-step="done">Done</li>
+          </ol>
+        </div>
+
+        <div class="error-banner" id="error-banner" hidden></div>
+
+        <!-- Results -->
+        <div class="results" id="results" hidden>
+
+          <div class="result-block">
+            <h3>Summary</h3>
+            <p class="summary-text" id="summary-text"></p>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-block">
+              <h3>Key decisions</h3>
+              <ul class="decision-list" id="decision-list"></ul>
+            </div>
+            <div class="result-block">
+              <h3>Action items</h3>
+              <ul class="action-list" id="action-list"></ul>
+            </div>
+          </div>
+
+          <div class="result-block transcript-block">
+            <button class="transcript-toggle" id="transcript-toggle" aria-expanded="false" aria-controls="transcript-body">
+              <h3>Full transcript</h3>
+              <span class="chevron" aria-hidden="true">▾</span>
+            </button>
+            <pre class="transcript-body" id="transcript-body" hidden></pre>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Placeholder shown when nothing is selected -->
+      <section class="card placeholder-card" id="placeholder-card">
+        <p>Select a meeting from the list, or upload a new recording, to see its transcript and summary here.</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

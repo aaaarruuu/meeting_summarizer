@@ -1,0 +1,12 @@
+Alright team, let's get started with the weekly product sync.
+First item, the onboarding flow redesign. Priya, can you give us a status update.
+Sure. The new onboarding flow is ready for review. We finished the Figma mockups last week and user testing went well.
+Great. Let's decide, we will launch the new onboarding flow to ten percent of users starting next Monday.
+Second item, the API rate limiting issue. Jordan, what's the plan.
+We traced it to the payments service making too many retries. I'll ship a fix by Wednesday and add better logging.
+Perfect. Jordan, please prepare a short postmortem document and share it with the team by Thursday.
+Third item, the quarterly report. Priya will you own pulling the metrics together.
+Yes, I can have the metrics ready by Friday for the leadership review.
+One more thing, we decided to postpone the pricing page redesign until next quarter so the team can focus on onboarding.
+Okay, let's also make sure Jordan follows up with the infrastructure team about the staging environment outage from last week.
+Thanks everyone, that covers everything for today. Same time next week.

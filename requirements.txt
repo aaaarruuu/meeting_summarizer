@@ -1,0 +1,17 @@
+# Runtime dependencies for the Meeting Summarizer backend.
+# Versions are pinned to what this project was built and tested against.
+
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+python-multipart==0.0.32
+SQLAlchemy==2.0.52
+pydantic==2.13.4
+python-dotenv==1.2.2
+
+# Speech-to-text
+faster-whisper==1.2.1
+
+# LLM providers (only the one set in LLM_PROVIDER actually needs an API key,
+# but both SDKs are lightweight enough to install by default)
+openai==3.3.1
+anthropic==1.0.0
