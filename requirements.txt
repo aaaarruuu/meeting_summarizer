@@ -15,3 +15,4 @@ faster-whisper==1.2.1
 # but both SDKs are lightweight enough to install by default)
 openai==3.3.1
 anthropic==1.0.0
+transformers
