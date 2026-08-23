@@ -5,21 +5,12 @@ from typing import Any, Dict
 
 
 class BaseSummarizer(ABC):
-    """Common interface every LLM backend implements."""
-
     @abstractmethod
     def summarize(self, transcript: str) -> Dict[str, Any]:
-        """Returns {"summary": str, "key_decisions": list[str], "action_items": list[dict]}."""
         raise NotImplementedError
 
 
 def parse_json_response(content: str) -> Dict[str, Any]:
-    """Best-effort parse of an LLM's JSON reply.
-
-    Models occasionally wrap JSON in ```json fences or add stray text even
-    when explicitly told not to - this keeps the app robust to that instead
-    of crashing the whole pipeline over formatting.
-    """
     content = content.strip()
     try:
         return json.loads(content)
