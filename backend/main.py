@@ -32,10 +32,6 @@ app.include_router(meetings_router)
 def health_check():
     return {"status": "ok"}
 
-
-# Serve the plain HTML/CSS/JS frontend at "/" so the whole app is a single
-# `uvicorn backend.main:app` away from being usable - no separate frontend
-# server or build step required.
 _FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend")
 if os.path.isdir(_FRONTEND_DIR):
     app.mount("/", StaticFiles(directory=_FRONTEND_DIR, html=True), name="frontend")
