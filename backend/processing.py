@@ -1,10 +1,3 @@
-"""
-The actual pipeline: audio file on disk -> transcript -> structured summary.
-
-This runs in a FastAPI BackgroundTask (see routes/meetings.py) so the
-upload request returns immediately and the frontend polls for status
-instead of holding a connection open for the full processing time.
-"""
 import json
 import traceback
 
