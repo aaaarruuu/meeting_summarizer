@@ -5,12 +5,6 @@ from .openai_whisper import OpenAIWhisperASR
 
 
 def get_asr_engine() -> BaseASR:
-    """Returns the configured speech-to-text engine.
-
-    Controlled by ASR_PROVIDER in the environment: "local" (default) or
-    "openai". Add a new branch here (and a matching class) to plug in
-    Azure Speech, Google STT, etc. without touching any calling code.
-    """
     if settings.ASR_PROVIDER == "openai":
         return OpenAIWhisperASR()
     return LocalWhisperASR(
